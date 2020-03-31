@@ -22,7 +22,7 @@ class State(BaseModel, Base):
         cities = relationship("City",
                               backref="state",
                               cascade="all, delete-orphan")
-             
+
     if os.getenv('HBNB_TYPE_STORAGE') == 'fs':
         @property
         def cities(self):
@@ -31,4 +31,3 @@ class State(BaseModel, Base):
                 if self.id == city.state_id:
                     _cities.append(city)
             return _cities
-
