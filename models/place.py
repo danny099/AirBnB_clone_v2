@@ -92,5 +92,13 @@ class Place(BaseModel, Base):
             """Adds an Amenity"""
             if type(am).__name__ == 'Amenity':
                 self.am_id.append(am)
+    elif os.getenv('HBNB_TYPE_STORAGE') == 'db':
+        @property
+        def reviews(self):
+            _rev = []
+            for review in self.reviews:
+                if review.place_id == self.id:
+                    _rev.append(review)
+            return(_rev)
         amenities = relationship("Amenity",
                                  secondary=place_amenity)
