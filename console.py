@@ -45,9 +45,11 @@ class HBNBCommand(cmd.Cmd):
             obj = eval("{}()".format(my_list[0]))
             for item in my_list[1:]:
                 split = item.split("=")
+                #is a stirng
                 if split[1][0] == "\"":
                     split[1] = split[1][1:-1]
                     split[1] = split[1].replace('_', ' ').replace('"', '\\"')
+                # is a float or int
                 elif split[1].isdigit():
                     setattr(obj, split[0], split[1])
                 setattr(obj, split[0], split[1])
