@@ -3,6 +3,20 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship
+import os
+
+place_amenity = Table('place_amenity', Base.metadata,
+                      Column('place_id',
+                             String(60),
+                             ForeignKey('places.id'),
+                             primary_key=True,
+                             nullable=False),
+                      Column('amenity_id',
+                             String(60),
+                             ForeignKey('amenities.id'),
+                             primary_key=True,
+                             nullable=False))
+
 
 
 class Place(BaseModel, Base):
@@ -61,3 +75,22 @@ class Place(BaseModel, Base):
     reviews = relationship("Review",
                            backref="place",
                            cascade="all, delete-orphan")
+    am_id = []
+
+    if os.getenv('HBNB_TYPE_STORAGE') == 'file':
+        @property
+        def amenities(self):
+            """Returns the instances"""
+            _inst = []
+            for am in am_id:
+                if am.id == self.id:
+                    _inst.append(am)
+            return _inst
+
+        @amenities.setter
+        def amenities(self, am):
+            """Adds an Amenity"""
+            if type(am).__name__ == 'Amenity':
+                self.am_id.append(am)
+        amenities = relationship("Amenity",
+                                 secondary=place_amenity)
