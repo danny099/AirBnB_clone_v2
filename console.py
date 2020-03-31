@@ -50,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
                 if split[1][0] == "\"":
                     split[1] = split[1][1:-1]
                     split[1] = split[1].replace('_', ' ').replace('"', '\\"')
-                # is a float or
+                # is a float or i
                 elif split[1].isdigit():
                     setattr(obj, split[0], split[1])
                 setattr(obj, split[0], split[1])
