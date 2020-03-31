@@ -44,10 +44,10 @@ class TestDBStorage(unittest.TestCase):
         self.assertTrue(hasattr(DBStorage, '_DBStorage__session'))
         self.assertTrue(hasattr(DBStorage, 'new'))
         self.assertTrue(hasattr(DBStorage, 'save'))
-        self.assertTrue(hasattr(DBStorage, 'all')) 
+        self.assertTrue(hasattr(DBStorage, 'all'))
         self.assertTrue(hasattr(DBStorage, 'delete'))
         self.assertTrue(hasattr(DBStorage, 'reload'))
-    
+
     @unittest.skipIf(getenv("HBNB_TYPE_STORAGE") != 'db',
                      "can't")
     def test_pep8_DBStorage(self):
@@ -55,6 +55,7 @@ class TestDBStorage(unittest.TestCase):
         style = pep8.StyleGuide(quiet=True)
         pep = style.check_files(['models/engine/db_storage.py'])
         self.assertEqual(pep.total_errors, 0, "fix pep8")
+
 
 if __name__ == "__main__":
     unittest.main()
