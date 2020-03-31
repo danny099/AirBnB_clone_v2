@@ -56,6 +56,17 @@ class TestDBStorage(unittest.TestCase):
         pep = style.check_files(['models/engine/db_storage.py'])
         self.assertEqual(pep.total_errors, 0, "fix pep8")
 
+    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db', 'db')
+    def test_add(self):
+        """Test add"""
+        self.cur.execute("""
+        INSERT INTO states (id, created_at, updated_at, name)
+        VALUES (1, '2020-04-01 00:53:19', '2020-04-01 00:53:19', "Valle")
+        """)
+        self.cur.execute('SELECT * FROM states')
+        rows = self.cur.fetchall()
+        self.assertEqual(len(rows), 1)
+
 
 if __name__ == "__main__":
     unittest.main()

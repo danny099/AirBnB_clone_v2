@@ -5,6 +5,7 @@ import os
 from models.place import Place
 from models.base_model import BaseModel
 import pep8
+from os import getenv
 
 
 class TestPlace(unittest.TestCase):
@@ -82,7 +83,8 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(type(self.place.latitude), float)
         self.assertEqual(type(self.place.longitude), float)
         self.assertEqual(type(self.place.amenity_ids), list)
-
+    @unittest.skipIf(getenv("HBNB_TYPE_STORAGE") == 'db',
+                     "can't")
     def test_save_Place(self):
         """test if the save works"""
         self.place.save()

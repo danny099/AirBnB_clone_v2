@@ -5,6 +5,7 @@ import os
 from models.review import Review
 from models.base_model import BaseModel
 import pep8
+from os import getenv
 
 
 class TestReview(unittest.TestCase):
@@ -58,7 +59,8 @@ class TestReview(unittest.TestCase):
         self.assertEqual(type(self.rev.text), str)
         self.assertEqual(type(self.rev.place_id), str)
         self.assertEqual(type(self.rev.user_id), str)
-
+    @unittest.skipIf(getenv("HBNB_TYPE_STORAGE") == 'db',
+                     "can't")
     def test_save_Review(self):
         """test if the save works"""
         self.rev.save()
