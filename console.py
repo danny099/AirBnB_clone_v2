@@ -46,7 +46,7 @@ class HBNBCommand(cmd.Cmd):
             obj = eval("{}()".format(my_list[0]))
             for item in my_list[1:]:
                 split = item.split("=")
-                # is a str
+                # is a stri
                 if split[1][0] == "\"":
                     split[1] = split[1][1:-1]
                     split[1] = split[1].replace('_', ' ').replace('"', '\\"')
