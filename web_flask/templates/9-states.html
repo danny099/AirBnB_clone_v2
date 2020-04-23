@@ -15,7 +15,7 @@
     {% for j in states if j.id == id %}<H1>State: {{ j.name }}</H1>
     <H3>Cities:</H3>
     <UL>
-    {% for k in state.cities|sort(attribute='name') %}
+    {% for k in j.cities|sort(attribute='name') %}
         <LI>{{ k.id }}: <B>{{ k.name }}</B></LI>
     {% endfor %}
     </UL>
