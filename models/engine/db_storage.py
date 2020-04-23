@@ -80,3 +80,7 @@ class DBStorage:
         self.__session.close()
         Base.metadata.drop_all(self.__engine)
         self.reload()
+
+def close(self):
+        """Close sqlalquemi"""
+        self.__session.close()
